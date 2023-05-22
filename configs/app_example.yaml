@@ -1,0 +1,5 @@
+app:
+  logFile: log/gin.log
+  httpPort: 9876
+  httpUrl: 127.0.0.1:9876
+  jwtSecretKey: china
