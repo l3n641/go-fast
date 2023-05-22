@@ -47,3 +47,7 @@ func initMysql() {
 	db := database.NewMysqlDatabase().GetInstance()
 	db.AutoMigrate()
 }
+
+func initRedis() {
+	database.NewRedisClient()
+}
