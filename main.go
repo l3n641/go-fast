@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
+	"go-fast/internal/database"
 	"io"
 	"net/http"
 	"os"
@@ -12,6 +13,7 @@ import (
 func main() {
 	initConfig()
 	initFileLog()
+	initMysql()
 	router := gin.Default()
 	debug := viper.GetString("app.debug")
 	if debug != "" {
@@ -39,4 +41,9 @@ func initFileLog() {
 	logFile := viper.GetString("app.logFile")
 	f, _ := os.Create(logFile)
 	gin.DefaultWriter = io.MultiWriter(f)
+}
+
+func initMysql() {
+	db := database.NewMysqlDatabase().GetInstance()
+	db.AutoMigrate()
 }

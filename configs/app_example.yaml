@@ -1,3 +1,6 @@
+database_mysql:
+  dsn: root:123456@tcp(127.0.0.1:3306)/database?charset=utf8&parseTime=True&loc=Local
+  debug: 1
 app:
   logFile: log/gin.log
   httpPort: 9876
