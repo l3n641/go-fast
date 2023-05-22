@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
+	"go-fast/api/middleware"
 	"go-fast/internal/database"
 	"io"
 	"net/http"
@@ -19,6 +20,7 @@ func main() {
 	if debug != "" {
 		gin.SetMode(gin.DebugMode)
 	}
+	router.Use(middleware.Cors)
 
 	httpPort := viper.GetString("app.httpPort")
 	http.ListenAndServe(":"+httpPort, router)
