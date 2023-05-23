@@ -4,10 +4,9 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
-	"go-fast/api/middleware"
+	"go-fast/cmd"
 	"go-fast/internal/database"
 	"io"
-	"net/http"
 	"os"
 )
 
@@ -15,15 +14,9 @@ func main() {
 	initConfig()
 	initFileLog()
 	initMysql()
-	router := gin.Default()
-	debug := viper.GetString("app.debug")
-	if debug != "" {
-		gin.SetMode(gin.DebugMode)
-	}
-	router.Use(middleware.Cors)
 
-	httpPort := viper.GetString("app.httpPort")
-	http.ListenAndServe(":"+httpPort, router)
+	cmd.Execute()
+
 }
 
 func initConfig() {
